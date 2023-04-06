@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+    tools {
+        gradle "Gradle-8"
+    }
+    stages {
+        stage('clone repository') {
+            steps {
+                git 'https://github.com/AlbertineN/java-todo'
+            }
+        }
+        stage('Build project') {
+            steps {
+                sh 'gradle build'
+            } 
+        }
+        stage('Test'){
+            steps {
+                sh 'gradle test'
+            }
+        }
+        stage('Deploy to Heroku') {
+            steps {
+                withCredentials([usernameColonPassword(credentialsId: 'Heroku', variable: 'HEROKU_CREDENTIALS')]){
+                sh 'git push https://${HEROKU_CREDENTIALS}@git.heroku.com/secret-lowlands-82795.git master'
+                }
+            }
+        }
+        
+    }
+}
