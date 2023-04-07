@@ -1,6 +1,6 @@
 # Java-Week3-ToDo-List
 
-Author: Albertine Nginga
+Author: group work
 
 Official repo for the "To Do List" project using Java, Spark, Handlebars etc for week 3 of java unit.
 
