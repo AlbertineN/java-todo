@@ -12,7 +12,7 @@ pipeline {
         stage('Build project') {
             steps {
                 sh 'gradle build'
-            } 
+            }
         }
         stage('Test'){
             steps {
@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Email notification on build and test'){
             steps{
-               mail bcc: '', body: 'Successful build and test complete. Systems go for deployment. ', cc: '', from: '', replyTo: '', subject: 'Build and test sucess', to: 'albertinengingan@gmail.com,albertinenginga@gmail.com' 
+               mail bcc: '', body: 'Successful build and test complete. Systems go for deployment. ', cc: '', from: '', replyTo: '', subject: 'Build and test sucess', to: 'albertinengingan@gmail.com,albertinenginga@gmail.com'
             }
         }
         stage('Deploy to Heroku') {
@@ -36,6 +36,6 @@ pipeline {
                 slackSend channel: ' #slack-intergration ', color: '#008000', message: 'sucessfully deployed to heroku. link:https://polar-bayou-12504.herokuapp.com/', teamDomain: 'projectsdevop-ddy1039', tokenCredentialId: 'slack-jenkins'
             }
         }
-        
+
     }
 }}
